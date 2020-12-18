@@ -1,0 +1,18 @@
+version: "3"
+services:
+  krakend_ce:
+    image: devopsfaith/krakend:latest
+    volumes:
+      - ./krakend:/etc/krakend
+    ports:
+      - "1234:1234"
+      - "8080:8080"
+      - "8090:8090"
+  app1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+  app2:
+    build:
+      context: .
+      dockerfile: Dockerfile

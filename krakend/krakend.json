@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "timeout": "60000ms",
+  "cache_ttl": "300s",
+  "endpoints": [
+    {
+      "endpoint": "/healthcheck",
+      "method": "GET",
+      "backend": [
+        {
+          "url_pattern": "/api/healthcheck",
+          "group": "app1",
+          "host": [
+            "app1:8080"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend/http": {
+              "return_error_details": "app1"
+            }
+          }
+        },
+        {
+          "url_pattern": "/api/healthcheck",
+          "group": "app2",
+          "host": [
+            "app2:8080"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend/http": {
+              "return_error_details": "app2"
+            }
+          }
+        }
+      ],
+      "headers_to_pass": [
+        "Authorization"
+      ]
+    }
+  ]
+}
